@@ -20,15 +20,6 @@ namespace TrForward
         public static NetworkStream serverStream;
         public static NetworkStream playerStream;
 
-        public struct Message
-        {
-            public short length;
-            public byte type;
-            public byte[] data;
-
-            public NetworkStream stream;
-        }
-
         static void Main(string[] args)
         {
             RegisterAllMessage();
@@ -77,16 +68,13 @@ namespace TrForward
             task2.Wait();
         }
 
-        static INetMessage OnReceivedMessage(Message msg)
+        static INetMessage OnReceivedMessage(MessageRaw msg, Side side)
         {
             if (messageTypes.TryGetValue(msg.type, out var msgType))
             {
                 var netMsg = (INetMessage) Activator.CreateInstance(msgType);
 
-                if (msg.stream == serverStream)
-                    netMsg.Side = Side.Server;
-                else if (msg.stream == playerStream)
-                    netMsg.Side = Side.Client;
+                netMsg.Side = side;
 
                 using (var ms = new MemoryStream(msg.data))
                 {
@@ -100,9 +88,7 @@ namespace TrForward
 
                             if (subId == 1)
                             {
-                                if (netMsg.Side == Side.Client)
-                                    Console.WriteLine($"<{netMsg.Side}> : {(string)netModule.moduleValue["text"]}");
-                                else if (netMsg.Side == Side.Server)
+                                if (netMsg.Side == Side.Server)
                                     Console.WriteLine($"<{netMsg.Side}> : {((NetworkText)netModule.moduleValue["text"]).text}");
                             }
                         }
@@ -115,7 +101,7 @@ namespace TrForward
                     {
                         throw new Exception($"(SubPackage:{subId}) Failed to deserialize message\n" + e.ToString());
                     }
-                    Console.WriteLine($"Reveiced msg {msg.type} from " + netMsg.Side.ToString());
+                    //Console.WriteLine($"Reveiced msg {msg.type} from " + netMsg.Side.ToString());
 
                     if (ms.Position != ms.Length)
                         throw new Exception($"(SubPackage:{subId}) Part of the data is not read");
@@ -140,6 +126,8 @@ namespace TrForward
                 }
                 return netMsg;
             }
+            else
+                Console.WriteLine($"Unknown msg {msg.type}");
             return null;
         }
 
@@ -149,10 +137,11 @@ namespace TrForward
             {
                 while (serverConnection.Connected && playerConnection.Connected)
                 {
-                    Message msg = new Message();
+                    MessageRaw msg;
                     try
                     {
-                        msg = ReceiveFrom(from);
+                        var reader = new BinaryReader(from);
+                        msg = new MessageRaw(reader);
                     }
                     catch
                     {
@@ -163,7 +152,11 @@ namespace TrForward
 
                     try
                     {
-                        netMessage = OnReceivedMessage(msg);
+                        if (from == serverStream)
+                            netMessage = OnReceivedMessage(msg, Side.Server);
+                        else
+
+                            netMessage = OnReceivedMessage(msg, Side.Client);
                     }
                     catch (NotImplementedException)
                     {
@@ -201,22 +194,28 @@ namespace TrForward
                                     using (var writer = new BinaryWriter(memoryStream))
                                     {
                                         netMessage.OnSerialize(writer);
-                                        var message = new Message();
+                                        var message = new MessageRaw();
                                         message.type = msg.type;
                                         message.length = (short)(memoryStream.Length + 3);
                                         message.data = memoryStream.GetBuffer();
-                                        SendMessage(to, message);
+
+                                        var netWriter = new BinaryWriter(to);
+                                        message.WriteTo(netWriter);
                                     }
                                 }
                             }
                             catch (Exception e)
                             {
                                 Console.WriteLine($"Failed to serialize net message {msg.type} because {e.Message}");
-                                SendMessage(to, msg);
+                                var writer = new BinaryWriter(to);
+                                msg.WriteTo(writer);
                             }
                         }
                         else
-                            SendMessage(to, msg);
+                        {
+                            var writer = new BinaryWriter(to);
+                            msg.WriteTo(writer);
+                        }
                     }
                     catch (Exception e)
                     {
@@ -226,27 +225,6 @@ namespace TrForward
             });
             task.Start();
             return task;
-        }
-
-        static void SendMessage(NetworkStream stream, Message msg)
-        {
-            var binaryStream = new BinaryWriter(stream);
-            binaryStream.Write(msg.length);
-            binaryStream.Write(msg.type);
-            binaryStream.Write(msg.data, 0, msg.length - 3);
-        }
-
-        static Message ReceiveFrom(NetworkStream stream)
-        {
-            var binaryStream = new BinaryReader(stream);
-
-            var msg = new Message();
-            msg.length = binaryStream.ReadInt16();
-            msg.type = binaryStream.ReadByte();
-            msg.data = binaryStream.ReadBytes(msg.length - 3);
-            msg.stream = stream;
-
-            return msg;
         }
     }
 }
