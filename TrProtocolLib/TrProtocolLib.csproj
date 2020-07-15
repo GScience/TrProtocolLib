@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38DB2C17-B891-4BAE-B6A3-8DB22E3EAF42}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TrProtocolLib</RootNamespace>
+    <AssemblyName>TrProtocolLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MessageRaw.cs" />
+    <Compile Include="NetMessage\000_UNKNOWN.cs" />
+    <Compile Include="NetMessage\001_ConnectRequest.cs" />
+    <Compile Include="NetMessage\002_Disconnect.cs" />
+    <Compile Include="NetMessage\003_SetUserSlot.cs" />
+    <Compile Include="NetMessage\004_PlayerInfo.cs" />
+    <Compile Include="NetMessage\005_PlayerInventorySlot.cs" />
+    <Compile Include="NetMessage\006_RequireWorldData.cs" />
+    <Compile Include="NetMessage\007_WorldInfo.cs" />
+    <Compile Include="NetMessage\008_RequestEssentialTiles.cs" />
+    <Compile Include="NetMessage\009_Status.cs" />
+    <Compile Include="NetMessage\010_SendSection.cs" />
+    <Compile Include="NetMessage\011_SectionTileFrame.cs" />
+    <Compile Include="NetMessage\012_SpawnPlayer.cs" />
+    <Compile Include="NetMessage\013_UpdatePlayer.cs" />
+    <Compile Include="NetMessage\014_PlayerActive.cs" />
+    <Compile Include="NetMessage\015_NULL.cs" />
+    <Compile Include="NetMessage\016_PlayerHP.cs" />
+    <Compile Include="NetMessage\017_ModifyTile.cs" />
+    <Compile Include="NetMessage\018_Time.cs" />
+    <Compile Include="NetMessage\019_DoorToggle.cs" />
+    <Compile Include="NetMessage\020_SendTileSquare.cs" />
+    <Compile Include="NetMessage\021_UpdateItemDrop.cs" />
+    <Compile Include="NetMessage\022_UpdateItemOwner.cs" />
+    <Compile Include="NetMessage\023_NPCUpdate.cs" />
+    <Compile Include="NetMessage\024_StrikeNPCWithHeldItem.cs" />
+    <Compile Include="NetMessage\025_NULL.cs" />
+    <Compile Include="NetMessage\026_NULL.cs" />
+    <Compile Include="NetMessage\027_ProjectileUpdate.cs" />
+    <Compile Include="NetMessage\028_NPCStrike.cs" />
+    <Compile Include="NetMessage\029_DestroyProjectile.cs" />
+    <Compile Include="NetMessage\030_TogglePVP.cs" />
+    <Compile Include="NetMessage\031_OpenChest.cs" />
+    <Compile Include="NetMessage\032_UpdateChestItem.cs" />
+    <Compile Include="NetMessage\033_SyncActiveChest.cs" />
+    <Compile Include="NetMessage\034_PlaceChest.cs" />
+    <Compile Include="NetMessage\035_HealEffect.cs" />
+    <Compile Include="NetMessage\036_PlayerZone.cs" />
+    <Compile Include="NetMessage\037_RequestPassword.cs" />
+    <Compile Include="NetMessage\038_SendPassword.cs" />
+    <Compile Include="NetMessage\039_RemoveItemOwner.cs" />
+    <Compile Include="NetMessage\040_SetActiveNPC.cs" />
+    <Compile Include="NetMessage\041_PlayerItemAnimation.cs" />
+    <Compile Include="NetMessage\042_PlayerMana.cs" />
+    <Compile Include="NetMessage\043_ManaEffect.cs" />
+    <Compile Include="NetMessage\044_NULL.cs" />
+    <Compile Include="NetMessage\045_PlayerTeam.cs" />
+    <Compile Include="NetMessage\046_RequestSign.cs" />
+    <Compile Include="NetMessage\047_UpdateSign.cs" />
+    <Compile Include="NetMessage\048_SetLiquid.cs" />
+    <Compile Include="NetMessage\049_CompleteConnectionAndSpawn.cs" />
+    <Compile Include="NetMessage\050_UpdatePlayerBuff.cs" />
+    <Compile Include="NetMessage\051_SpecialNPCEffect.cs" />
+    <Compile Include="NetMessage\052_Unlock.cs" />
+    <Compile Include="NetMessage\053_AddNPCBuff.cs" />
+    <Compile Include="NetMessage\054_UpdateNPCBuff.cs" />
+    <Compile Include="NetMessage\055_AddPlayerBuff.cs" />
+    <Compile Include="NetMessage\056_UpdateNPCName.cs" />
+    <Compile Include="NetMessage\057_UpdateGoodEvil.cs" />
+    <Compile Include="NetMessage\058_PlayMusicItem.cs" />
+    <Compile Include="NetMessage\059_HitSwitch.cs" />
+    <Compile Include="NetMessage\060_NPCHomeUpdate.cs" />
+    <Compile Include="NetMessage\061_SpawnBoxxInvasion.cs" />
+    <Compile Include="NetMessage\062_PlayerDodge.cs" />
+    <Compile Include="NetMessage\063_PaintTile.cs" />
+    <Compile Include="NetMessage\064_PaintWall.cs" />
+    <Compile Include="NetMessage\065_PlayerNPCTeleport.cs" />
+    <Compile Include="NetMessage\066_HealOtherPlayer.cs" />
+    <Compile Include="NetMessage\067_Placeholder.cs" />
+    <Compile Include="NetMessage\068_ClientUUID.cs" />
+    <Compile Include="NetMessage\069_GetChestName.cs" />
+    <Compile Include="NetMessage\070_CatchNPC.cs" />
+    <Compile Include="NetMessage\071_ReleaseNPC.cs" />
+    <Compile Include="NetMessage\072_TravellingMerchantInventory.cs" />
+    <Compile Include="NetMessage\073_TeleportationPotion.cs" />
+    <Compile Include="NetMessage\074_AnglerQuest.cs" />
+    <Compile Include="NetMessage\075_CompleteAnglerQuestToday.cs" />
+    <Compile Include="NetMessage\076_NumberOfAnglerQuestsCompleted.cs" />
+    <Compile Include="NetMessage\077_CreateTemporaryAnimation.cs" />
+    <Compile Include="NetMessage\078_ReportInvasionProgress.cs" />
+    <Compile Include="NetMessage\079_PlaceObject.cs" />
+    <Compile Include="NetMessage\080_SyncPlayerChestIndex.cs" />
+    <Compile Include="NetMessage\082_NetModule.cs" />
+    <Compile Include="NetMessage\090_UpdateItemDrop2.cs" />
+    <Compile Include="NetType\BitsByte.cs" />
+    <Compile Include="NetType\Item.cs" />
+    <Compile Include="TileEntitiesData\DisplayDoll.cs" />
+    <Compile Include="TileEntitiesData\FoodPlatter.cs" />
+    <Compile Include="TileEntitiesData\HatRack.cs" />
+    <Compile Include="TileEntitiesData\ItemFrame.cs" />
+    <Compile Include="TileEntitiesData\LogicSensor.cs" />
+    <Compile Include="TileEntitiesData\TeleportationPylon.cs" />
+    <Compile Include="TileEntitiesData\TrainingDummy.cs" />
+    <Compile Include="TileEntitiesData\WeaponsRack.cs" />
+    <Compile Include="TrObject\Chest.cs" />
+    <Compile Include="NetType\Color.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="NetType\DoorToggleAction.cs" />
+    <Compile Include="TrObject\TEData.cs" />
+    <Compile Include="TrObject\TileEntity.cs" />
+    <Compile Include="INetMessage.cs" />
+    <Compile Include="INetObject.cs" />
+    <Compile Include="NetType\ModifyTileAction.cs" />
+    <Compile Include="NetType\NetworkText.cs" />
+    <Compile Include="NetType\NetworkTextMode.cs" />
+    <Compile Include="NetType\PlaceChestAction.cs" />
+    <Compile Include="NetType\PlayerSpawnContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrObject\Sign.cs" />
+    <Compile Include="NetType\SpawnBossInvasionType.cs" />
+    <Compile Include="NetType\SpecialNPCEffectType.cs" />
+    <Compile Include="NetType\TeleportationPotionType.cs" />
+    <Compile Include="TrObject\Tile.cs" />
+    <Compile Include="NetType\UnlockType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
