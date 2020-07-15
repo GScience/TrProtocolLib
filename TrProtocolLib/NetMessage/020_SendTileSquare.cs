@@ -1,10 +1,10 @@
 using System.IO;
 using System;
 using System.Collections.Generic;
-using TrProtocol.NetType;
-using TrProtocol.TrObject;
+using TrProtocolLib.NetType;
+using TrProtocolLib.TrObject;
 
-namespace TrProtocol.NetMessage
+namespace TrProtocolLib.NetMessage
 {
     /// <summary>
     /// 

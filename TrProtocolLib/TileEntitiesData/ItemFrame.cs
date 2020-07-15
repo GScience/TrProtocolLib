@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using TrProtocol.NetType;
+using TrProtocolLib.NetType;
 
-namespace TrProtocol.TileEntitiesData
+namespace TrProtocolLib.TileEntitiesData
 {
     public class ItemFrame : INetObject
     {

@@ -1,9 +1,9 @@
 using System.IO;
 using System;
 using System.Collections.Generic;
-using TrProtocol.NetType;
+using TrProtocolLib.NetType;
 
-namespace TrProtocol.NetMessage
+namespace TrProtocolLib.NetMessage
 {
     /// <summary>
     /// This packet is used once in the connecting phase and does the following:\n1.Sends you the spawn section\n2.Optionally, if spawn coords aren't -1 - sends you the sections of the selected position (which is the player's spawnpoint)\nSynchronises all portals and sections around them

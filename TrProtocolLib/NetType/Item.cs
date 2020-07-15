@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TrProtocol.NetType
+namespace TrProtocolLib.NetType
 {
     /// <summary>
     /// Color

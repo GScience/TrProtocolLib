@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace TrProtocol
+namespace TrProtocolLib
 {
     public struct MessageRaw
     {

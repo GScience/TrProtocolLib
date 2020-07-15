@@ -1,9 +1,9 @@
 using System.IO;
 using System;
 using System.Collections.Generic;
-using TrProtocol.NetType;
+using TrProtocolLib.NetType;
 
-namespace TrProtocol.NetMessage
+namespace TrProtocolLib.NetMessage
 {
     /// <summary>
     /// 

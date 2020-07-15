@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TrProtocol.TileEntitiesData;
+using TrProtocolLib.TileEntitiesData;
 
-namespace TrProtocol
+namespace TrProtocolLib
 {
     public static class Database
     {

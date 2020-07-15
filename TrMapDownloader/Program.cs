@@ -5,8 +5,8 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
-using TrProtocol;
-using TrProtocol.NetMessage;
+using TrProtocolLib;
+using TrProtocolLib.NetMessage;
 
 namespace TrMapDownloader
 {

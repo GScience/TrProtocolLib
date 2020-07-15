@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace TrProtocol.TileEntitiesData
+namespace TrProtocolLib.TileEntitiesData
 {
     public class TeleportationPylon : INetObject
     {

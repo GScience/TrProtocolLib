@@ -1,4 +1,4 @@
-namespace TrProtocol.NetType
+namespace TrProtocolLib.NetType
 {
     /// <summary>
     /// 

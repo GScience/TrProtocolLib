@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using TrProtocol;
-using TrProtocol.NetMessage;
-using TrProtocol.NetType;
+using TrProtocolLib;
+using TrProtocolLib.NetMessage;
+using TrProtocolLib.NetType;
 
 namespace TrForward
 {

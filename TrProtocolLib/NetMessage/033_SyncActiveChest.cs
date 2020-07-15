@@ -1,9 +1,9 @@
 using System.IO;
 using System;
 using System.Collections.Generic;
-using TrProtocol.NetType;
+using TrProtocolLib.NetType;
 
-namespace TrProtocol.NetMessage
+namespace TrProtocolLib.NetMessage
 {
     /// <summary>
     /// This packet is used to tell the server that you've exited the chest view (sending ID -1), that you're looking at your piggy bank (sending ID -2), that you're looking at your safe (sending ID -3) and that you're looking at your defender's forge (sending ID -4). Those are sent at every chest interaction. Packet [33]'s main function is to synchronize the sending client's active chest to the server, and its side function is to rename the chest.\nIt should be noted that this packet is not sent when you open a regular chest. The server knows which chest you opened when you send [31], so the [33] is only sent upon exit to unblock the chest (as opposed to both open & exit for banks like piggy, safe & defender forge)

@@ -1,7 +1,7 @@
 using System.IO;
 using System;
 
-namespace TrProtocol
+namespace TrProtocolLib
 {
     public interface INetObject
     {
