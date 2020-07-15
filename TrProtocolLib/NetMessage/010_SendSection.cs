@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using TrProtocol.NetType;
 using TrProtocol.TrObject;
-using Ionic.Zlib;
+using System.IO.Compression;
 
 namespace TrProtocol.NetMessage
 {
